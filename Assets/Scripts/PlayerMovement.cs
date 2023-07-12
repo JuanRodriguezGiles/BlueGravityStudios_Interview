@@ -1,11 +1,13 @@
+using System;
+
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     #region EXPOSED_FIELDS
     [SerializeField] private float speed = 0.0f;
+    [SerializeField] private Rigidbody2D rigidbody2d = null;
     [SerializeField] private Animator animator = null;
-    
     #endregion
 
     #region PRIVATE_FIELDS
@@ -16,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       
     }
     #endregion
 
@@ -45,8 +52,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
         
-        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0f);
-        transform.position += movement * speed * Time.deltaTime;
+        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        rigidbody2d.velocity = movement * speed;
     }
     #endregion
 }
