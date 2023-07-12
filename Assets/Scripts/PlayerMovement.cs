@@ -19,11 +19,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-       
-    }
     #endregion
 
     #region PRIVATE_METHODS
@@ -35,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveHorizontal == 0 && moveVertical == 0)
         {
             animator.SetBool(walkingId, false);
+            rigidbody2d.velocity = Vector2.zero;
             return;
         }
         
