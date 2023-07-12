@@ -38,11 +38,9 @@ public class PlayerMovement : MonoBehaviour
         {
             case > 0:
                 transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                Debug.Log("Moving right");
                 break;
             case < 0:
                 transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                Debug.Log("Moving left");
                 break;
         }
         

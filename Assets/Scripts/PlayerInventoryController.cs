@@ -8,6 +8,8 @@ public class PlayerInventoryController : MonoBehaviour
 {
     #region EXPOSED_FIELDS
     [SerializeField] private InventoryUI inventoryUI = null;
+    [SerializeField] private HudUI hudUI = null;
+    [SerializeField] private PlayerEquipmentHandler playerEquipmentHandler = null;
     [SerializeField] private List<Item> startingItems = null;
     [SerializeField] private int startingGold = 1000;
     #endregion
@@ -30,11 +32,16 @@ public class PlayerInventoryController : MonoBehaviour
         ownedItems.AddRange(startingItems);
 
         inventoryUI.Init(ownedItems, onSellItem, EquipItem);
+        hudUI.Init( (() =>
+        {
+            ToggleInventory(false);
+        }));
     }
 
-    public void ToggleInventory(bool status, bool onShop)
+    public void ToggleInventory(bool onShop)
     {
-        inventoryUI.ToggleView(status, onShop);
+        inventoryUI.ToggleView(onShop);
+        hudUI.ToggleInventoryBtn(onShop);
     }
     
     public void AddItem(Item item)
@@ -61,7 +68,8 @@ public class PlayerInventoryController : MonoBehaviour
 
     public void EquipItem(string itemId)
     {
-        
+        Item item = ownedItems.Find(i => i.ID == itemId);
+        playerEquipmentHandler.EquipItem(item);
     }
     #endregion
 }

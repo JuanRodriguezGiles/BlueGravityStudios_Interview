@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
         shopController.Init(playerInventoryController);
 
         shopController.ToggleShop(true);
-        playerInventoryController.ToggleInventory(true, true);
+        //playerInventoryController.ToggleInventory(true);
     }
     #endregion
 

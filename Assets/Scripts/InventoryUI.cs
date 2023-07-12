@@ -31,12 +31,10 @@ public class InventoryUI : MonoBehaviour
         SpawnItems(ownedItems);
     }
     
-    public void ToggleView(bool status, bool onShop)
+    public void ToggleView(bool onShop)
     {
         this.onShop = onShop;
-        scrollViewHolder.gameObject.SetActive(status);
-
-        if (!status) return;
+        scrollViewHolder.gameObject.SetActive(!scrollViewHolder.gameObject.activeInHierarchy);
         
         for (int i = 0; i < itemViews.Count; i++)
         {
