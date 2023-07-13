@@ -13,9 +13,8 @@ public class ShopController : MonoBehaviour
     private PlayerInventoryController playerInventoryController = null;
     private ShopkeeperController shopkeeperController = null;
     #endregion
-    
+
     #region UNITY_CALLS
-   
     #endregion
 
     #region PUBLIC_METHODS
@@ -24,28 +23,30 @@ public class ShopController : MonoBehaviour
         this.playerInventoryController = playerInventoryController;
         this.shopkeeperController = shopkeeperController;
         
+        this.playerInventoryController.Init(BuyBackItem);
+        
         shopUI.Init(shopItems, SellItem, () =>
         {
             ToggleShop(false);
         });
-        this.playerInventoryController.Init(BuyBackItem);
+       
         this.shopkeeperController.Init(ToggleShop);
     }
     #endregion
-    
+
     #region PRIVATE_METHODS
     private void ToggleShop(bool status)
     {
         shopUI.ToggleView(status);
         playerInventoryController.ToggleInventory(status, status);
     }
-    
+
     private void SellItem(string itemId)
     {
         Item item = shopItems.Find(i => i.ID == itemId);
-        
+
         if (item.Price > playerInventoryController.Gold) return;
-        
+
         playerInventoryController.RemoveGold(item.Price);
         playerInventoryController.AddItem(item);
         shopUI.ToggleItem(item, false);
@@ -56,10 +57,17 @@ public class ShopController : MonoBehaviour
     {
         Item item = playerInventoryController.OwnedItems.Find(i => i.ID == itemId);
 
-        playerInventoryController.AddGold(item.Price);
-        playerInventoryController.RemoveItem(item);
-        shopUI.ToggleItem(item, true);
-        shopItems.Add(item);
+        if (playerInventoryController.IsItemEquipped(item))
+        {
+            Debug.Log("Cant sell equipped items");
+        }
+        else
+        {
+            playerInventoryController.AddGold(item.Price);
+            playerInventoryController.RemoveItem(item);
+            shopUI.ToggleItem(item, true);
+            shopItems.Add(item);
+        }
     }
     #endregion
 }

@@ -45,6 +45,11 @@ public class ItemView : MonoBehaviour
             onPress.Invoke(id);
         });
     }
+
+    public void ToggleInteraction(bool status)
+    {
+        button.interactable = status;
+    }
     #endregion
 
     #region PRIVATE_METHODS

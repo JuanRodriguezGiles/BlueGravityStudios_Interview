@@ -66,6 +66,11 @@ public class PlayerInventoryController : MonoBehaviour
         gold -= goldToRemove;
         hudUI.UpdateGold(gold);
     }
+
+    public bool IsItemEquipped(Item item)
+    {
+        return playerEquipmentHandler.IsItemEquipped(item);
+    }
     #endregion
 
     #region PRIVATE_METHODS

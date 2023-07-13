@@ -15,17 +15,17 @@ public class ShopUI : MonoBehaviour
 
     #region PRIVATE_FIELDS
     private List<ItemView> itemViews = null;
-    private Action<string> onBuyItem = null;
+    private Action<string> onSellItem = null;
     #endregion
     
     #region PROPERTIES
     #endregion
     
     #region PUBLIC_METHODS
-    public void Init(List<Item> shopItems, Action<string> onBuyItem, Action onBtnClosePress)
+    public void Init(List<Item> shopItems, Action<string> onSellItem, Action onBtnClosePress)
     {
         itemViews = new List<ItemView>();
-        this.onBuyItem = onBuyItem;
+        this.onSellItem = onSellItem;
         SpawnItems(shopItems);
         btnClose.onClick.AddListener(onBtnClosePress.Invoke);
     }
@@ -35,19 +35,6 @@ public class ShopUI : MonoBehaviour
         scrollViewHolder.gameObject.SetActive(status);
     }
     
-    public void SpawnItems(List<Item> shopItems)
-    {
-        for (int i = 0; i < shopItems.Count; i++)
-        {
-            GameObject go = Instantiate(itemViewPrefab, contentHolder);
-            ItemView itemView = go.GetComponent<ItemView>();
-
-            itemView.Config(shopItems[i]);
-            itemView.SetCallback(onBuyItem);
-            itemViews.Add(itemView);
-        }
-    }
-
     public void ToggleItem(Item item, bool status)
     {
         for (int i = 0; i < itemViews.Count; i++)
@@ -59,6 +46,21 @@ public class ShopUI : MonoBehaviour
         }
 
         SpawnItems(new List<Item> { item });
+    }
+    #endregion
+
+    #region PRIVATE_METHODS
+    private void SpawnItems(List<Item> shopItems)
+    {
+        for (int i = 0; i < shopItems.Count; i++)
+        {
+            GameObject go = Instantiate(itemViewPrefab, contentHolder);
+            ItemView itemView = go.GetComponent<ItemView>();
+
+            itemView.Config(shopItems[i]);
+            itemView.SetCallback(onSellItem);
+            itemViews.Add(itemView);
+        }
     }
     #endregion
 }
