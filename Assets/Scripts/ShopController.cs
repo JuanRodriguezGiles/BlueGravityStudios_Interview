@@ -24,13 +24,14 @@ public class ShopController : MonoBehaviour
         this.shopkeeperController = shopkeeperController;
         
         this.playerInventoryController.Init(BuyBackItem);
+        this.shopkeeperController.Init(ToggleShop);
         
         shopUI.Init(shopItems, SellItem, () =>
         {
             ToggleShop(false);
+            shopkeeperController.ToggleShopBtn(true);
         });
-       
-        this.shopkeeperController.Init(ToggleShop);
+
     }
     #endregion
 

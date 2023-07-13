@@ -38,7 +38,13 @@ public class ShopkeeperController : MonoBehaviour
         shopkeeperUI.SetBtnCallback((() =>
         {
            onOpenShop.Invoke(true);
+           shopkeeperUI.ToggleBtn(false);
         }));
+    }
+
+    public void ToggleShopBtn(bool status)
+    {
+        shopkeeperUI.ToggleBtn(status);
     }
     #endregion
 }
