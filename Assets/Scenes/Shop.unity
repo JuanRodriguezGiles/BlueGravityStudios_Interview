@@ -1083,7 +1083,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -24238,7 +24238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1300553367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24461,11 +24461,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItems:
-  - {fileID: 11400000, guid: fd07a73223c71df48b507d4e08760739, type: 2}
   - {fileID: 11400000, guid: b2342c0d9ec1c574e8d8d6d0a843e737, type: 2}
   - {fileID: 11400000, guid: e79fc5ec62115924a84614537253660a, type: 2}
   - {fileID: 11400000, guid: 0bd06c56a47b699448529aa71c764565, type: 2}
   - {fileID: 11400000, guid: a9b2f926484f2234f9e2a233d7a141b7, type: 2}
+  - {fileID: 11400000, guid: 16a9c53443fe351439d076d8285917a1, type: 2}
+  - {fileID: 11400000, guid: fa9285af2810a474b8ea1a57ba5c84b2, type: 2}
+  - {fileID: 11400000, guid: 228daa69fc2878744b38625ca373ae17, type: 2}
+  - {fileID: 11400000, guid: e647362b20c09fe499fe0f65bb87f8ab, type: 2}
+  - {fileID: 11400000, guid: 7bf913c40bed7014ea36ed44f287cafc, type: 2}
+  - {fileID: 11400000, guid: 6f9212a1c7915c043ba66d7ab9887ba5, type: 2}
+  - {fileID: 11400000, guid: 659a3e693da314e429c50c60436d102f, type: 2}
+  - {fileID: 11400000, guid: 26c68848aaf28a44bbb3ea46fc8875cd, type: 2}
   shopUI: {fileID: 2030774511}
 --- !u!1 &1594874362
 GameObject:
@@ -24519,7 +24526,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6361f07dbf6c8fd40bbab24d3ec7f3cc, type: 2}
   - {fileID: 11400000, guid: ca00c2fc0aa02ad46809f4e1408b3978, type: 2}
   - {fileID: 11400000, guid: 1aeb27456d4f12344a5aa4b3bbdba9d7, type: 2}
-  - {fileID: 11400000, guid: 16a9c53443fe351439d076d8285917a1, type: 2}
   startingGold: 1000
 --- !u!1 &1604169286
 GameObject:
@@ -24995,9 +25001,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1915147551
 MonoBehaviour:
@@ -25372,6 +25378,7 @@ MonoBehaviour:
   scrollViewHolder: {fileID: 1300553367}
   contentHolder: {fileID: 1456145911}
   itemViewPrefab: {fileID: 1711631198334894386, guid: 4a95e0351ba6a39448df8762c879203e, type: 3}
+  btnClose: {fileID: 780097145}
 --- !u!114 &3423246371052172552 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2290469755176935329, guid: 405a7b27ad44b374f92d886c62fc3df5, type: 3}

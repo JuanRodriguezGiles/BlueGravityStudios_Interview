@@ -39,6 +39,7 @@ public class ItemView : MonoBehaviour
 
     public void SetCallback(Action<string> onPress)
     {
+        button.onClick.RemoveAllListeners();
         button.onClick.AddListener( () =>
         {
             onPress.Invoke(id);
