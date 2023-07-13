@@ -9,6 +9,7 @@ public class ShopkeeperController : MonoBehaviour
     #endregion
 
     #region PRIVATE_FIELDS
+    private Action<bool> onOpenShop = null;
     #endregion
     
     #region UNITY_CALLS
@@ -25,6 +26,7 @@ public class ShopkeeperController : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             shopkeeperUI.ToggleBtn(false);
+            onOpenShop.Invoke(false);
         }
     }
     #endregion
@@ -32,6 +34,7 @@ public class ShopkeeperController : MonoBehaviour
     #region PUBLIC_METHODS
     public void Init(Action<bool> onOpenShop)
     {
+        this.onOpenShop = onOpenShop;
         shopkeeperUI.SetBtnCallback((() =>
         {
            onOpenShop.Invoke(true);
