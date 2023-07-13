@@ -1,8 +1,7 @@
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
-
-using System.Collections.Generic;
 
 public class PlayerInventoryController : MonoBehaviour
 {
@@ -32,10 +31,10 @@ public class PlayerInventoryController : MonoBehaviour
         ownedItems.AddRange(startingItems);
 
         inventoryUI.Init(ownedItems, onSellItem, EquipItem);
-        hudUI.Init( (() =>
+        hudUI.Init(() =>
         {
             ToggleInventory(false);
-        }));
+        }, gold);
     }
 
     public void ToggleInventory(bool onShop)
@@ -59,14 +58,18 @@ public class PlayerInventoryController : MonoBehaviour
     public void AddGold(int goldToAdd)
     {
         gold += goldToAdd;
+        hudUI.UpdateGold(gold);
     }
     
     public void RemoveGold(int goldToRemove)
     {
         gold -= goldToRemove;
+        hudUI.UpdateGold(gold);
     }
+    #endregion
 
-    public void EquipItem(string itemId)
+    #region PRIVATE_METHODS
+    private void EquipItem(string itemId)
     {
         Item item = ownedItems.Find(i => i.ID == itemId);
         playerEquipmentHandler.EquipItem(item);
