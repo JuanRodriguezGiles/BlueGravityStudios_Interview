@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopUI : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private Transform scrollViewHolder = null;
     [SerializeField] private Transform contentHolder = null;
     [SerializeField] private GameObject itemViewPrefab = null;
+    [SerializeField] private Button btnClose = null;
     #endregion
 
     #region PRIVATE_FIELDS
@@ -17,15 +19,15 @@ public class ShopUI : MonoBehaviour
     #endregion
     
     #region PROPERTIES
-    public Transform ContentHolder { get => contentHolder; }
     #endregion
     
     #region PUBLIC_METHODS
-    public void Init(List<Item> shopItems, Action<string> onBuyItem)
+    public void Init(List<Item> shopItems, Action<string> onBuyItem, Action onBtnClosePress)
     {
         itemViews = new List<ItemView>();
         this.onBuyItem = onBuyItem;
         SpawnItems(shopItems);
+        btnClose.onClick.AddListener(onBtnClosePress.Invoke);
     }
     
     public void ToggleView(bool status)

@@ -11,6 +11,7 @@ public class ShopController : MonoBehaviour
 
     #region PRIVATE_FIELDS
     private PlayerInventoryController playerInventoryController = null;
+    private ShopkeeperController shopkeeperController = null;
     #endregion
     
     #region UNITY_CALLS
@@ -18,20 +19,27 @@ public class ShopController : MonoBehaviour
     #endregion
 
     #region PUBLIC_METHODS
-    public void Init(PlayerInventoryController playerInventoryController)
+    public void Init(PlayerInventoryController playerInventoryController, ShopkeeperController shopkeeperController)
     {
         this.playerInventoryController = playerInventoryController;
-        shopUI.Init(shopItems, SellItem);
+        this.shopkeeperController = shopkeeperController;
+        
+        shopUI.Init(shopItems, SellItem, () =>
+        {
+            ToggleShop(false);
+        });
         this.playerInventoryController.Init(BuyBackItem);
-    }
-
-    public void ToggleShop(bool status)
-    {
-        shopUI.ToggleView(status);
+        this.shopkeeperController.Init(ToggleShop);
     }
     #endregion
     
     #region PRIVATE_METHODS
+    private void ToggleShop(bool status)
+    {
+        shopUI.ToggleView(status);
+        playerInventoryController.ToggleInventory(status, status);
+    }
+    
     private void SellItem(string itemId)
     {
         Item item = shopItems.Find(i => i.ID == itemId);

@@ -33,13 +33,13 @@ public class PlayerInventoryController : MonoBehaviour
         inventoryUI.Init(ownedItems, onSellItem, EquipItem);
         hudUI.Init(() =>
         {
-            ToggleInventory(false);
+            ToggleInventory(true, false);
         }, gold);
     }
 
-    public void ToggleInventory(bool onShop)
+    public void ToggleInventory(bool status, bool onShop)
     {
-        inventoryUI.ToggleView(onShop);
+        inventoryUI.ToggleView(status, onShop);
         hudUI.ToggleInventoryBtn(onShop);
     }
     

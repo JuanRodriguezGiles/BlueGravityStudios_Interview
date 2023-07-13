@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform scrollViewHolder = null;
     [SerializeField] private Transform contentHolder = null;
     [SerializeField] private GameObject itemViewPrefab = null;
+    [SerializeField] private Button btnClose = null;
     #endregion
 
     #region PRIVATE_FIELDS
@@ -29,18 +31,24 @@ public class InventoryUI : MonoBehaviour
         
         itemViews = new List<ItemView>();
         SpawnItems(ownedItems);
+        btnClose.onClick.AddListener( (() =>
+        {
+            ToggleView(false, false);
+        }));
     }
-    
-    public void ToggleView(bool onShop)
+
+    public void ToggleView(bool status, bool onShop)
     {
         this.onShop = onShop;
-        scrollViewHolder.gameObject.SetActive(!scrollViewHolder.gameObject.activeInHierarchy);
+        scrollViewHolder.gameObject.SetActive(status);
         
         for (int i = 0; i < itemViews.Count; i++)
         {
             itemViews[i].TogglePrice(onShop);
             itemViews[i].SetCallback(onShop ? onSellItem : onEquipItem);
         }
+        
+        btnClose.gameObject.SetActive(!onShop);
     }
     
     public void ToggleItem(Item item, bool status)
